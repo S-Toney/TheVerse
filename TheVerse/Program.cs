@@ -10,6 +10,7 @@ namespace TheVerse
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("You're peacefully floating through the 'verse when...");
         }
     }
 }
