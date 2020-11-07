@@ -23,11 +23,13 @@ namespace TheVerse
             //string playerCharacter = "";
             do
             {
+                //Choose Character Loop
                 do
                 {
                     Console.WriteLine("\tChoose your character: \n" +
                         "\t\tM)al\n" +
-                        "\t\tZ)o\u00eb\n");
+                        "\t\tZ)o\u00eb\n" +
+                        "\t\tE)xit");
                     //"\t\tW)ash\n" +
                     //"\t\tI)nara\n" +
                     //"\t\tJ)ayne\n" +
@@ -39,6 +41,9 @@ namespace TheVerse
                     switch (chooseCharacter)
                     {
                         case ConsoleKey.Escape:
+                        case ConsoleKey.E:
+                            Console.WriteLine("As I understand it, it's a bit cold outside. Better put on a suit.");
+                            repeat = false;
                             choose = true;
                             repeat = false;
                             keepGoing = false;
@@ -82,48 +87,51 @@ namespace TheVerse
                         //playerCharacter = Sheppard Book;
                         //   Console.WriteLine("Welcome Sheppard");
                         //   break;
-                        //  case ConsoleKey.E:
-                        //  Console.WriteLine("As I understand it, it's a bit cold outside. Better put on a suit.");
-                        //  repeat = false;
-                        // break;
                         default:
                             Console.WriteLine("I'm thinkin you're not burdoned with an overabundance of schooling...choose from the menu."); choose = false;
                             break;
                     }//end Character switch
                 } while (!choose);
-                do
+                if (choose && repeat)
                 {
-                    Console.Clear();
-                    //TODO Load character situation based on chooseCharacter
-                    Console.WriteLine("...situation based on chooseCharacter shows here...");
-                    Console.WriteLine($"\tPlayer name, what do you do?\n" +
-                        // $"\t\t R)elease the Cry Baby\n" +
-                        $"\t\t I)t's time to fight!\n" +
-                        $"\t\t G)o for burn\n");
-                    ConsoleKey playerChoice = Console.ReadKey(true).Key;
-                    switch (playerChoice)
+                    do
                     {
-                        case ConsoleKey.Escape:
-                            choose = true;
-                            repeat = false;
-                            keepGoing = false;
-                            break;
-                        case ConsoleKey.R:
-                            //This is a distraction tactic to buy time
-                            break;
-                        case ConsoleKey.I:
-                            //Combat
-                            break;
-                        case ConsoleKey.G:
-                            //Run away
-                            break;
-                        default:
-                            Console.WriteLine("I'm thinkin you're not burdoned with an overabundance of schooling...choose from the menu.");
-                            break;
-                    }//end Action switch
-                } while (keepGoing && repeat && choose);
-            } while (keepGoing);
+                        Console.Clear();
+                        //TODO Load character situation based on chooseCharacter
+                        Console.WriteLine("...situation based on chooseCharacter shows here...");
+                        Console.WriteLine($"\tPlayer name, what do you do?\n" +//TODO Display chosen character name in place of Player name.
+                                                                               // $"\t\t R)elease the Cry Baby\n" +
+                            $"\t\t I)t's time to fight!\n" +
+                            $"\t\t G)o for burn\n");
+                        ConsoleKey playerChoice = Console.ReadKey(true).Key;
+                        switch (playerChoice)
+                        {
+                            case ConsoleKey.E:
+                            case ConsoleKey.Escape:
+                                Console.WriteLine("As I understand it, it's a bit cold outside. Better put on a suit.");
+                                repeat = false;
+                                choose = true;
+                                repeat = false;
+                                keepGoing = false;
+                                break;
+                            //case ConsoleKey.R:
+                                //This is a distraction tactic to buy time
+                                //break;
+                            case ConsoleKey.I:
+                                //TODO Combat Functionality
+                                break;
+                            case ConsoleKey.G:
+                                //TODO Run away Functionality
+                                break;
+                            default:
+                                Console.WriteLine("I'm thinkin you're not burdoned with an overabundance of schooling...choose from the menu.");
+                                break;
+                        }//end Action switch
 
-        }
-    }
-}
+                    } while (keepGoing && repeat && choose);
+                }
+            } while (keepGoing && repeat && choose);
+        }//end Main
+
+    }//end class
+}//end namespace
