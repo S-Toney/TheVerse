@@ -8,15 +8,14 @@ namespace Characters
 {
     public class Patience : Character
     {
-        //fields
+        //fields  TODO Add cronies instead of creating TooFry seperately?
+
         //props
 
         //ctors
-        public Patience(string description, int hitPoints, bool isFighter, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative)
+        public Patience(string description, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative, int hitPoints)
         {
             Description = description;
-            HitPoints = hitPoints;
-            IsFighter = isFighter;
             MaxHitPoints = maxHitPoints;
             Name = name;
             Attack = attack;
@@ -24,13 +23,11 @@ namespace Characters
             Dodge = dodge;
             Block = block;
             Initiative = initiative;
-
+            HitPoints = hitPoints;
         }
         public Patience()
         {
-            Description = "She's not involved in land wars anymore. She's basically Mayor of this little moon.";
-            HitPoints = 10;
-            IsFighter = false;
+            Description = "She's not involved in land wars anymore. She's basically Mayor of this little moon.";            
             MaxHitPoints = 10;
             Name = "Patience";
             Attack = 2;
@@ -38,6 +35,7 @@ namespace Characters
             Dodge = 4;
             Block = 2;
             Initiative = 5;
+            HitPoints = 10;
         }
         //methods
 

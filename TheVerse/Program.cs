@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Characters;
+using Actions;
 
 namespace TheVerse
 {
@@ -14,9 +15,10 @@ namespace TheVerse
             bool keepGoing = true;
             bool repeat = true;
             bool choose = true;
-            Mal mal = new Mal("Captain Reynolds- Big Bad Veterin - A man of honor in a din of thieves", 12, true, 12, "Capt. Malcom Reynolds", 3, 1, 3, 1, 6);
-            Zoe zoe = new Zoe("First Mate", 12, true, 12, "Zo\u00eb", 3, 2, 4, 2, 6);
-            Patience patience = new Patience();
+            Fighter mal = new Fighter("Captain Reynolds- Big Bad Veterin - A man of honor in a din of thieves", 12, true, 12, "Capt. Malcom Reynolds", 3, 1, 3, 1, 6);
+            Fighter zoe = new Fighter("First Mate", 12, true, 12, "Zo\u00eb", 3, 2, 4, 2, 6);
+           // Patience patience = new Patience();
+           // Patience tooFry = new Patience("That boy must be your best shot to carry a rifle like that. Nice hat.", 7, 7, "Too-Fry", 3, 1, 1, 1, 4);
             Console.Title = "The 'Verse";
             Console.WriteLine("Press escape to exit.\n\n\n" +
                 "You're peacefully floating through the 'verse when...\n\n");
@@ -96,10 +98,13 @@ namespace TheVerse
                 {
                     do
                     {
+                        //TODO Seperate loop based on land vs space scenario
+
+
                         Console.Clear();
                         //TODO Load character situation based on chooseCharacter
-                        Console.WriteLine("...situation based on chooseCharacter shows here...");
-                        Console.WriteLine($"\tPlayer name, what do you do?\n" +//TODO Display chosen character name in place of Player name.
+                        Console.WriteLine(GetScenario());
+                        Console.WriteLine($"\tWhat do you do, Player name?\n" +//TODO Display chosen character name in place of Player name.
                                                                                // $"\t\t R)elease the Cry Baby\n" +
                             $"\t\t I)t's time to fight!\n" +
                             $"\t\t G)o for burn\n");
@@ -115,8 +120,8 @@ namespace TheVerse
                                 keepGoing = false;
                                 break;
                             //case ConsoleKey.R:
-                                //This is a distraction tactic to buy time
-                                //break;
+                            //This is a distraction tactic to buy time
+                            //break;
                             case ConsoleKey.I:
                                 //TODO Combat Functionality
                                 break;
@@ -133,5 +138,19 @@ namespace TheVerse
             } while (keepGoing && repeat && choose);
         }//end Main
 
-    }//end class
-}//end namespace
+        //Game Scenarios
+        private static string GetScenario()
+        {
+            List<string> scenario = new List<string>()
+            {
+                "You're landing on Whitefall. It's time to visit an old \"friend\". Let's try to make a deal with Patience...\n\nThe last time you were on Whitefall there was a conflict between you tow but now you're desperate to sell your cargo. You land early and bury the cargo to ensure you get paid before you meet up with Patience and her loyal sidekick Two-Fry. At the rendezvous Patience gives you the money for your cargo and wants to know where it is. Patience smiles broadly as she confirms she knows the location of the buried cargo. Two-Fry who raises his rifle and you realize Patience has no reason to let you live if you tell her where the cargo is. When she looks at Two-Fry you know she's going to tell him to kill you."
+            };
+            Random rand = new Random();
+            int indexNbr = rand.Next(scenario.Count);
+            string scenarios = "You're able to keep flying...\n" + scenario[indexNbr] + "\n";//TODO shows up in the first scenario
+            return scenarios;
+        }//end Game Scenarios
+    }
+}
+
+

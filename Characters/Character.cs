@@ -10,7 +10,6 @@ namespace Characters
     {
         //fields
         private int _hitPoints;
-        private bool _isFighter;
         //props
         public string Description { get; set; }
         public int MaxHitPoints { get; set; }
@@ -35,18 +34,9 @@ namespace Characters
                 }
             }
         }
-        public bool IsFighter
-        {
-            get { return _isFighter; }
-            set
-            {
-                if (true)
-                {
-                    Attack += 3;
-                }
-            }
-        }
+
         //ctors - N/A
+
         //methods
 
         public virtual int CalcAttack()
