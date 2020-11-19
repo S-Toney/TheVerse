@@ -25,8 +25,9 @@ namespace Characters
         }
 
         //ctors
-        public Fighter(string description, int hitPoints, bool isFighter, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative)
+        public Fighter(bool isPlayer, string description, int hitPoints, bool isFighter, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative)
         {
+            IsPlayer = isPlayer;
             Description = description;
             HitPoints = hitPoints;
             IsFighter = isFighter;
@@ -40,11 +41,12 @@ namespace Characters
         }
         public Fighter()
         {
-            Description = "Captain Reynolds - Big Bad Veterin - A man of honor in a din of thieves.";
+            IsPlayer = true;
+            Description = "Captain";
             HitPoints = 12;
             IsFighter = true;
             MaxHitPoints = 12;
-            Name = "Capt. Malcom Reynolds";
+            Name = "Captain";
             Attack = 3;
             ArmorClass = 1;
             Dodge = 3;
@@ -58,15 +60,17 @@ namespace Characters
     public class Pilot : Character
     {
         //fields
+        private bool evasion;
         //TODO add evasion and cry baby
         //props
-
+        public bool Evasion { get; set; }
         //ctors
-        public Pilot(string description, int hitPoints, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative)
+        public Pilot(bool isPlayer, bool evasion, string description, int hitPoints, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative)
         {
+            IsPlayer = isPlayer;
+            Evasion = evasion;
             Description = description;
             HitPoints = hitPoints;
-
             MaxHitPoints = maxHitPoints;
             Name = name;
             Attack = attack;
@@ -74,6 +78,20 @@ namespace Characters
             Dodge = dodge;
             Block = block;
             Initiative = initiative;
+        }
+        public Pilot()
+        {
+            IsPlayer = true;
+            Evasion = true;
+            Description = "Pilot";
+            HitPoints = 12;
+            MaxHitPoints = 12;
+            Name = "Pilot";
+            Attack = 2;
+            ArmorClass = 1;
+            Dodge = 3;
+            Block = 1;
+            Initiative = 6;
         }
 
         //methods

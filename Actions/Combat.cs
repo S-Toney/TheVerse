@@ -9,12 +9,13 @@ namespace Actions
 {
     public class Combat
     {
+        static int nbr1and20;
         public static int DiceRoll()
         {
             Random rand = new Random();
             //Dice Roll 
             Random randomNbrGen = new Random();
-            int nbr1and20 = randomNbrGen.Next(1, 21);
+            nbr1and20 = randomNbrGen.Next(1, 21);
 
             if (nbr1and20 == 1)
             {
@@ -23,21 +24,27 @@ namespace Actions
             }
             else if (nbr1and20 == 20)
             {
-                Console.WriteLine("WOOOOOOHOOOOOOOOOOO" + nbr1and20 + "!");
+                Console.WriteLine("WOOOOOOHOOOOOOOOOOO" + nbr1and20 + "! That's a critical hit!");
             }
             else
             {
-                Console.WriteLine("\nA random number between 1 and 20:\n{0}\n", nbr1and20);
+                Console.WriteLine("\nA You rolled:\n{0}\n", nbr1and20);
             }
             return nbr1and20;
         }//end Dice Roll
 
-        public static void Attack(Character attacker, Character defender)
+        public static void Attack(Character attacking, Character defending)
         {
-            if (DiceRoll() >= attacker.Initiative)
+            if (attacking.IsPlayer)
             {
-                Console.WriteLine();
+
+            } 
+            else if (defending.IsPlayer)
+            {
+
             }
+
+
 
         }
     }

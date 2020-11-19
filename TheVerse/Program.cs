@@ -17,8 +17,8 @@ namespace TheVerse
             bool choose = true;
             Fighter mal = new Fighter("Captain Reynolds- Big Bad Veterin - A man of honor in a din of thieves", 12, true, 12, "Capt. Malcom Reynolds", 3, 1, 3, 1, 6);
             Fighter zoe = new Fighter("First Mate", 12, true, 12, "Zo\u00eb", 3, 2, 4, 2, 6);
-           // Patience patience = new Patience();
-           // Patience tooFry = new Patience("That boy must be your best shot to carry a rifle like that. Nice hat.", 7, 7, "Too-Fry", 3, 1, 1, 1, 4);
+           // Boss patience = new Boss();
+           // Cronie tooFry = new Cronie("That boy must be your best shot to carry a rifle like that. Nice hat.", 7, 7, "Too-Fry", 3, 1, 1, 1, 4);
             Console.Title = "The 'Verse";
             Console.WriteLine("Press escape to exit.\n\n\n" +
                 "You're peacefully floating through the 'verse when...\n\n");

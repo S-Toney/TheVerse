@@ -11,6 +11,7 @@ namespace Characters
         //fields
         private int _hitPoints;
         //props
+        public bool IsPlayer { get; set; }
         public string Description { get; set; }
         public int MaxHitPoints { get; set; }
         public string Name { get; set; }
