@@ -13,7 +13,7 @@ namespace Actions
         public static int DiceRoll()
         {
             Random rand = new Random();
-            //Dice Roll 
+            //DICE ROLL 
             Random randomNbrGen = new Random();
             nbr1and20 = randomNbrGen.Next(1, 21);
 
@@ -33,19 +33,26 @@ namespace Actions
             return nbr1and20;
         }//end Dice Roll
 
+        //ATTACK
         public static void Attack(Character attacking, Character defending)
         {
-            if (attacking.IsPlayer)
+            if ((nbr1and20 + attacking.Attack) >= (nbr1and20 + defending.ArmorClass))
             {
-
-            } 
-            else if (defending.IsPlayer)
+                int Damage = attacking.Attack - defending.Block;
+                defending.HitPoints -= Damage;
+                Console.WriteLine($"{attacking.Name} hit {defending.Name}! {defending.Name} took {Damage} damage.");
+            }
+            else
             {
-
+                Console.WriteLine($"{attacking} missed.");
             }
 
+        }//end Attack
 
-
+        //BATTLE
+        public static void Battle(Playercharacter player, Enemy enemy)
+        {
+            
         }
     }
 }

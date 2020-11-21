@@ -6,7 +6,33 @@ using System.Threading.Tasks;
 
 namespace Characters
 {
-    public class Fighter : Character
+    //public class PlayerCharacter : Character
+    //{
+    //    //fields
+    //    private bool _isPlayer;
+
+    //    //props
+    //    public bool IsPlayer
+    //    {
+    //        get { return _isPlayer; }
+    //        set { _isPlayer = value; }
+    //    }
+
+    //    public PlayerCharacter(bool isPlayer, string description, int hitPoints, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative)
+    //    {
+    //        IsPlayer = isPlayer;
+    //        Description = description;
+    //        HitPoints = hitPoints;
+    //        MaxHitPoints = maxHitPoints;
+    //        Name = name;
+    //        Attack = attack;
+    //        ArmorClass = armorClass;
+    //        Dodge = dodge;
+    //        Block = block;
+    //        Initiative = initiative;
+    //    }
+
+        public class Fighter : Character
     {
         //fields
         private bool _isFighter;
@@ -25,9 +51,8 @@ namespace Characters
         }
 
         //ctors
-        public Fighter(bool isPlayer, string description, int hitPoints, bool isFighter, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative)
+        public Fighter(string description, int hitPoints, bool isFighter, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative)
         {
-            IsPlayer = isPlayer;
             Description = description;
             HitPoints = hitPoints;
             IsFighter = isFighter;
@@ -41,7 +66,6 @@ namespace Characters
         }
         public Fighter()
         {
-            IsPlayer = true;
             Description = "Captain";
             HitPoints = 12;
             IsFighter = true;
@@ -65,9 +89,8 @@ namespace Characters
         //props
         public bool Evasion { get; set; }
         //ctors
-        public Pilot(bool isPlayer, bool evasion, string description, int hitPoints, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative)
+        public Pilot(bool evasion, string description, int hitPoints, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative)
         {
-            IsPlayer = isPlayer;
             Evasion = evasion;
             Description = description;
             HitPoints = hitPoints;
@@ -81,7 +104,6 @@ namespace Characters
         }
         public Pilot()
         {
-            IsPlayer = true;
             Evasion = true;
             Description = "Pilot";
             HitPoints = 12;

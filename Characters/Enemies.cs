@@ -13,9 +13,8 @@ namespace Characters
         //props
 
         //ctors
-        public Boss(bool isPlayer, string description, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative, int hitPoints)
+        public Boss(string description, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative, int hitPoints)
         {
-            IsPlayer = isPlayer;
             Description = description;
             MaxHitPoints = maxHitPoints;
             Name = name;
@@ -28,10 +27,9 @@ namespace Characters
         }
         public Boss()
         {
-            IsPlayer = false;
             Description = "She's not involved in land wars anymore. She's basically Mayor of this little moon.";            
             MaxHitPoints = 10;
-            Name = "Patience";
+            Name = "Boss";
             Attack = 2;
             ArmorClass = 1;
             Dodge = 4;
@@ -51,9 +49,8 @@ namespace Characters
         //props
 
         //ctors
-        public Croanie(bool isPlayer, string description, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative, int hitPoints)
+        public Croanie(string description, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative, int hitPoints)
         {
-            IsPlayer = IsPlayer;
             Description = description;
             MaxHitPoints = maxHitPoints;
             Name = name;
@@ -66,10 +63,9 @@ namespace Characters
         }
         public Croanie()
         {
-            IsPlayer = false;
             Description = "The boy must be your best shot to carry a rifle like that.";
             MaxHitPoints = 10;
-            Name = "TooFry";
+            Name = "Croanie";
             Attack = 2;
             ArmorClass = 1;
             Dodge = 4;
