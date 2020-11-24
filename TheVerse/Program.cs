@@ -10,17 +10,17 @@ namespace TheVerse
 {
     class Program
     {
+        private static Boss boss;
+        private static Croanie croanie;
         static void Main(string[] args)
         {
             bool keepGoing = true;
             bool repeat = true;
             bool choose = true;
-            Character player;
-            Character enemy;
+            PlayerCharacter player = new PlayerCharacter();
             Fighter mal = new Fighter("Captain Reynolds- Big Bad Veterin - A man of honor in a din of thieves", 12, true, 12, "Capt. Malcom Reynolds", 3, 1, 3, 1, 6);
             Fighter zoe = new Fighter("First Mate", 12, true, 12, "Zo\u00eb", 3, 2, 4, 2, 6);
-            Boss patience = new Boss();
-            Croanie tooFry = new Croanie("He's called Two-Fry. Always makes it quick and clean.", 7, "Too-Fry", 3, 1, 1, 1, 4, 7);
+
             Console.Title = "The 'Verse";
             Console.WriteLine("Press escape to exit.\n\n\n" +
                 "You're peacefully floating through the 'verse when...\n\n");
@@ -95,22 +95,21 @@ namespace TheVerse
                         //    break;
                         default:
                             Console.WriteLine("I'm thinkin you're not burdoned with an overabundance of schooling...choose from the menu."); choose = false;
+                            player = mal;
                             break;
                     }//end Character switch
                 } while (!choose);
                 if (choose && repeat)
-                {
+                {//Load Scenario and Combat
                     do
                     {
                         //TODO Seperate loop based on land vs space scenario
-
-
                         Console.Clear();
+
                         //TODO Load character situation based on chooseCharacter??? Maybe too restrictive?
                         Console.WriteLine(GetScenario());
-                        GetEnemies(); //TODO This needs to call the cooresponding enemies based on scenario : likely by matching indexies
-                        Console.WriteLine($"\tWhat do you do, Player name?\n" +//TODO Display chosen character name in place of Player name.
-                                                                               // $"\t\t R)elease the Cry Baby\n" +
+                        Console.WriteLine($"\tWhat do you do, *Player*Name*?\n" +//TODO Display chosen character name in place of Player name.
+                                                                                 // $"\t\t R)elease the Cry Baby\n" +
                             $"\t\t I)t's time to fight!\n" +
                             $"\t\t G)o for burn\n");
                         ConsoleKey playerChoice = Console.ReadKey(true).Key;
@@ -126,17 +125,12 @@ namespace TheVerse
                                 break;
                             //case ConsoleKey.R:
                             //This is a distraction tactic to buy time
+                            //Console.WriteLine("Cry Baby Cry - Make your mother sigh");
                             //break;
                             case ConsoleKey.I:
                                 //TODO Combat Functionality
-                                if (player.Initiative + Diceroll() >= enemy.Initiative + Diceroll())
-                                {
-                                    attacking = player;
-                                }
-                                else
-                                {
-                                    defending = player;
-                                }
+                                Combat.Battle(player, croanie);
+                                Combat.Battle(player, boss);
                                 break;
                             case ConsoleKey.G:
                                 //TODO Run away Functionality
@@ -153,16 +147,23 @@ namespace TheVerse
 
 
         //Game Enemies
-        private static string GetEnemies()
+        private static void GetCroanie(int indexNbr)
         {   //TODO I need these to connect to the class names not just spit out strings
-            List<string> boss = new List<string>() 
+            List<Croanie> ListCroanie = new List<Croanie>()
             {
-                "Patience"
+                new Croanie("He's called Two-Fry. ALways makes it quick and clean.", 7, "Too-Fry", 3, 1, 1, 1, 4, 7)
             };
-            List<string> croanie = new List<string>()
+
+            croanie = ListCroanie[indexNbr];
+        }//end Croanies
+
+        private static void GetEnemy(int indexNbr)
+        {   //TODO I need these to connect to the class names not just spit out strings
+            List<Boss> ListBoss = new List<Boss>()
             {
-                "TooFry"
+                new Boss("She's just about mayor of this little moon", 5, "Patience", 3, 2, 1, 2, 1, 5)
             };
+            boss = ListBoss[indexNbr];
         }//end Enemies
 
         //Game Scenarios
@@ -176,6 +177,8 @@ namespace TheVerse
             Random rand = new Random();
             int indexNbr = rand.Next(scenario.Count);
             string scenarios = "You're able to keep flying...\n" + scenario[indexNbr] + "\n";//TODO shows up in the first scenario - Shouldn't show up till first scenario is won
+            GetCroanie(indexNbr);
+            GetEnemy(indexNbr);
             return scenarios;
         }//end Scenarios
     }
