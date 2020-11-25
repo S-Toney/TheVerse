@@ -22,7 +22,7 @@ namespace TheVerse
             Fighter zoe = new Fighter("First Mate", 12, true, 12, "Zo\u00eb", 3, 2, 4, 2, 6);
 
             Console.Title = "The 'Verse";
-            Console.WriteLine("Press escape to exit.\n\n\n" +
+            Console.WriteLine("Press escape to exit.\n\n\n\n" +
                 "You're peacefully floating through the 'verse when...\n\n");
             //TODO Keep score
             do
@@ -48,6 +48,8 @@ namespace TheVerse
                         case ConsoleKey.E:
                         case ConsoleKey.X:
                             Console.WriteLine("As I understand it, it's a bit cold outside. Better put on a suit.");
+                            Console.WriteLine("Press enter to exit...");
+                            Console.ReadLine();
                             repeat = false;
                             choose = true;
                             repeat = false;
@@ -55,13 +57,13 @@ namespace TheVerse
                             break;
                         case ConsoleKey.M:
                             player = mal;
-                            Console.WriteLine("Hello Captain.");
+                            Console.WriteLine("\n\n\tHello Captain.\n\nPress enter to continue...");
                             Console.ReadLine();
                             choose = true;
                             break;
                         case ConsoleKey.Z:
                             player = zoe;
-                            Console.WriteLine("Hello Zo\u00eb");
+                            Console.WriteLine("\n\n\tHello Zo\u00eb/n/nPress enter to continue...");
                             Console.ReadLine();
                             choose = true;
                             break;
@@ -104,12 +106,13 @@ namespace TheVerse
                     do
                     {
                         //TODO Seperate loop based on land vs space scenario
-                        Console.Clear();//TODO Fix the clearing issue so you can read the output - Add a "Press Ent to continue"
-
+                        Console.Clear();//TODONE Fix the clearing issue so you can read the output - Add a "Press Ent to continue"
+                        
                         Console.WriteLine(GetScenario());
-                        Console.WriteLine($"\tWhat do you do, {player.Name}?\n" +//TODONE Display chosen character name in place of Player name.
+                        Console.WriteLine($"{player.Name} Hit Points: {player.HitPoints}\t{croanie.Name} Hit Points: {croanie.HitPoints}\t{boss.Name} Hit Points: {boss.HitPoints}");
+                        Console.WriteLine($"\n\n\tWhat do you do, {player.Name}?\n" +//TODONE Display chosen character name in place of Player name.
                                                                                  // $"\t\t R)elease the Cry Baby\n" +
-                            $"\t\t I)t's time to fight!\n" +
+                            $"\n\t\t I)t's time to fight!\n" +
                             $"\t\t G)o for burn\n");
                         ConsoleKey playerChoice = Console.ReadKey(true).Key;
                         switch (playerChoice)

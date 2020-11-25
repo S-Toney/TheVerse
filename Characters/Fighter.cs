@@ -9,7 +9,7 @@ namespace Characters
     public class Fighter : PlayerCharacter
     {
         //fields
-        private bool _isFighter;
+        private readonly bool _isFighter = true;
 
         //props
         public bool IsFighter

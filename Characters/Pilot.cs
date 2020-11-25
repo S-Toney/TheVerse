@@ -9,7 +9,7 @@ namespace Characters
     public class Pilot : Character
     {
         //fields
-        private bool evasion;
+        private readonly bool evasion;
         //TODO add evasion and cry baby
         //props
         public bool Evasion { get; set; }
