@@ -10,6 +10,7 @@ namespace TheVerse
 {
     class Program
     {
+        public static int score = 0;
         private static Boss boss;
         private static Croanie croanie;
         static void Main(string[] args)
@@ -63,7 +64,7 @@ namespace TheVerse
                             break;
                         case ConsoleKey.Z:
                             player = zoe;
-                            Console.WriteLine("\n\n\tHello Zo\u00eb/n/nPress enter to continue...");
+                            Console.WriteLine("\n\n\tHello Zo\u00eb\n\nPress enter to continue...");
                             Console.ReadLine();
                             choose = true;
                             break;
@@ -110,6 +111,7 @@ namespace TheVerse
                         
                         Console.WriteLine(GetScenario());
                         Console.WriteLine($"{player.Name} Hit Points: {player.HitPoints}\t{croanie.Name} Hit Points: {croanie.HitPoints}\t{boss.Name} Hit Points: {boss.HitPoints}");
+                        Console.WriteLine($"Score: {score}");
                         Console.WriteLine($"\n\n\tWhat do you do, {player.Name}?\n" +//TODONE Display chosen character name in place of Player name.
                                                                                  // $"\t\t R)elease the Cry Baby\n" +
                             $"\n\t\t I)t's time to fight!\n" +
@@ -133,7 +135,17 @@ namespace TheVerse
                             case ConsoleKey.I:
                                 //TODONE Combat Functionality
                                 Combat.Battle(player, croanie);
+                                if (croanie.HitPoints <= 0)
+                                {
+                                    Console.WriteLine($"You killed {croanie.Name}");
+                                    score++;
+                                }
                                 Combat.Battle(player, boss);
+                                if (boss.HitPoints <= 0)
+                                {
+                                    Console.WriteLine($"You killed {boss.Name}");
+                                    score++;
+                                }
                                 Console.WriteLine("Press enter to continue...");
                                 Console.ReadLine();
                                 break;

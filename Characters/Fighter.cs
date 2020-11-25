@@ -12,26 +12,31 @@ namespace Characters
         private readonly bool _isFighter = true;
 
         //props
-        public bool IsFighter
-        {
-            get { return _isFighter; }
-            set
-            {
-                if (true)
-                {
-                    Attack += 3;
-                }
-            }
-        }
+        //public bool IsFighter
+        //{
+        //    get { return _isFighter; }
+        //    set
+        //    {
+        //        if (true)
+        //        {
+        //            Attack += 3;
+        //        }
+        //    }
+        //}
+        public bool IsFighter { get; set; }
 
         //ctors
-        public Fighter(string description, int hitPoints, bool isFighter, int maxHitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative) : base(description, hitPoints, maxHitPoints, name, attack, armorClass, dodge, block, initiative)
+        public Fighter(string description, int maxHitPoints, bool isFighter, int hitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative) : base(description, maxHitPoints, hitPoints, name, attack, armorClass, dodge, block, initiative)
         {
             IsFighter = isFighter;
         }
 
         //methods
-
+        public override int CalcAttack()
+        {
+            Attack += 3;
+            return Attack;
+        }
 
     }//end Fighter
 }
