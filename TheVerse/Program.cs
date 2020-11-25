@@ -18,6 +18,7 @@ namespace TheVerse
             bool keepGoing = true;
             bool repeat = true;
             bool choose = true;
+            bool again = true;
             PlayerCharacter player = new PlayerCharacter();
             Fighter mal = new Fighter("Captain Reynolds- Big Bad Veterin - A man of honor in a din of thieves", 12, true, 12, "Capt. Malcom Reynolds", 3, 1, 3, 1, 6);
             Fighter zoe = new Fighter("First Mate", 12, true, 12, "Zo\u00eb", 3, 2, 4, 2, 6);
@@ -49,8 +50,8 @@ namespace TheVerse
                         case ConsoleKey.E:
                         case ConsoleKey.X:
                             Console.WriteLine("As I understand it, it's a bit cold outside. Better put on a suit.");
-                            Console.WriteLine("Press enter to exit...");
-                            Console.ReadLine();
+                            Console.WriteLine("\n\n\t\t\t\t\tPress enter to exit...");
+                            Console.ReadLine();//TODO Remove and replace with Sleep()
                             repeat = false;
                             choose = true;
                             repeat = false;
@@ -58,13 +59,13 @@ namespace TheVerse
                             break;
                         case ConsoleKey.M:
                             player = mal;
-                            Console.WriteLine("\n\n\tHello Captain.\n\nPress enter to continue...");
+                            Console.WriteLine("\n\n\tHello Captain.\n\n\t\t\t\t\tPress enter to continue...");
                             Console.ReadLine();
                             choose = true;
                             break;
                         case ConsoleKey.Z:
                             player = zoe;
-                            Console.WriteLine("\n\n\tHello Zo\u00eb\n\nPress enter to continue...");
+                            Console.WriteLine("\n\n\tHello Zo\u00eb\n\n\t\t\t\t\tPress enter to continue...");
                             Console.ReadLine();
                             choose = true;
                             break;
@@ -108,12 +109,14 @@ namespace TheVerse
                     {
                         //TODO Seperate loop based on land vs space scenario
                         Console.Clear();//TODONE Fix the clearing issue so you can read the output - Add a "Press Ent to continue"
-                        
+
                         Console.WriteLine(GetScenario());
                         Console.WriteLine($"{player.Name} Hit Points: {player.HitPoints}\t{croanie.Name} Hit Points: {croanie.HitPoints}\t{boss.Name} Hit Points: {boss.HitPoints}");
                         Console.WriteLine($"Score: {score}");
+
+
                         Console.WriteLine($"\n\n\tWhat do you do, {player.Name}?\n" +//TODONE Display chosen character name in place of Player name.
-                                                                                 // $"\t\t R)elease the Cry Baby\n" +
+                                                                                     // $"\t\t R)elease the Cry Baby\n" +
                             $"\n\t\t I)t's time to fight!\n" +
                             $"\t\t G)o for burn\n");
                         ConsoleKey playerChoice = Console.ReadKey(true).Key;
@@ -134,20 +137,28 @@ namespace TheVerse
                             //break;
                             case ConsoleKey.I:
                                 //TODONE Combat Functionality
-                                Combat.Battle(player, croanie);
-                                if (croanie.HitPoints <= 0)
-                                {
-                                    Console.WriteLine($"You killed {croanie.Name}");
-                                    score++;
-                                }
-                                Combat.Battle(player, boss);
-                                if (boss.HitPoints <= 0)
-                                {
-                                    Console.WriteLine($"You killed {boss.Name}");
-                                    score++;
-                                }
-                                Console.WriteLine("Press enter to continue...");
-                                Console.ReadLine();
+                              //  do
+                              //  {
+                                    Combat.Battle(player, croanie);
+                                    if (croanie.HitPoints <= 0)
+                                    {
+                                        Console.WriteLine($"You killed {croanie.Name}");
+                                        score++;
+                                    }
+                                    Combat.Battle(player, boss);
+                                    if (boss.HitPoints <= 0)
+                                    {
+                                        Console.WriteLine($"You killed {boss.Name}");
+                                        score++;
+                                    }
+                                    if (boss.HitPoints <= 0 && croanie.HitPoints <= 0)
+                                    {
+                                        Console.WriteLine("\n\n\tYou're able to keep flying...\n");
+                                       // again = false;
+                                    }
+                                    Console.WriteLine("\n\n\t\t\t\t\tPress enter to continue...");
+                                    Console.ReadLine();                                  
+                               // } while (again);
                                 break;
                             case ConsoleKey.G:
                                 //TODO Run away Functionality
@@ -165,7 +176,7 @@ namespace TheVerse
 
         //Game Enemies
         private static void GetCroanie(int indexNbr)
-        {   
+        {
             List<Croanie> ListCroanie = new List<Croanie>()
             {
                 new Croanie("He's called Two-Fry. ALways makes it quick and clean.", 7, "Too-Fry", 3, 1, 1, 1, 4, 7)
@@ -175,7 +186,7 @@ namespace TheVerse
         }//end Croanies
 
         private static void GetEnemy(int indexNbr)
-        {   
+        {
             List<Boss> ListBoss = new List<Boss>()
             {
                 new Boss("She's just about mayor of this little moon", 5, "Patience", 3, 2, 1, 2, 1, 5)
@@ -187,13 +198,13 @@ namespace TheVerse
         private static string GetScenario()
         {
             List<string> scenario = new List<string>()
-            { 
+            {
                 "You're landing on Whitefall. It's time to visit an old \"friend\". Let's try to make a deal with Patience...\n\nThe last time you were on Whitefall there was a conflict between you tow but now you're desperate to sell your cargo. You land early and bury the cargo to ensure you get paid before you meet up with Patience and her loyal sidekick Two-Fry. At the rendezvous Patience gives you the money for your cargo and wants to know where it is. Patience smiles broadly as she confirms she knows the location of the buried cargo. Two-Fry who raises his rifle and you realize Patience has no reason to let you live if you tell her where the cargo is. When she looks at Two-Fry you know she's going to tell him to kill you."
             };
 
             Random rand = new Random();
             int indexNbr = rand.Next(scenario.Count);
-            string scenarios = "You're able to keep flying...\n" + scenario[indexNbr] + "\n";//TODO shows up in the first scenario - Shouldn't show up till first scenario is won
+            string scenarios = scenario[indexNbr] + "\n";
             GetCroanie(indexNbr);
             GetEnemy(indexNbr);
             return scenarios;

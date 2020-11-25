@@ -27,49 +27,42 @@ namespace Actions
 
             if (nbr1and20 == 1)
             {
-                Console.WriteLine($"\t{ nbr1and20}" +
-                    $"\nOH DEAR GOD...{attacking.Name} botched...\n");
+                Console.WriteLine($"OH DEAR GOD...{attacking.Name} botched...\n");
+                attacking.HitPoints -= damage;
+                Console.WriteLine($"You're a very graceful creature, {attacking.Name}. You hit yourself! \n\t{attacking.Name} took {damage} damage.");
             }
             else if (nbr1and20 == 20)
             {
                 Console.WriteLine($"WOOOOOOHOOOOOOOOOOO {nbr1and20}! That's a critical hit!");
+                defending.HitPoints -= (damage * 2);
+                Console.WriteLine($"{attacking.Name} hit {defending.Name} for double damage! \n\t{defending.Name} took {damage} damage.");
             }
             else
             {
                 Console.WriteLine($"\n{attacking.Name} rolled:\n{nbr1and20}\n");
+                if ((nbr1and20 + attacking.Attack) >= (nbr1and20 + defending.ArmorClass))
+                {//TODONE Utilize num1and20 for damage on crits and botches
+                    defending.HitPoints -= damage;
+                    Console.WriteLine($"{attacking.Name} hit {defending.Name}! \n\t{defending.Name} took {damage} damage.");
+                }
+                else
+                {
+                    Console.WriteLine($"{attacking.Name} missed.");
+                }
             }
-            if (nbr1and20 == 1)//damage for botched roll
-            {
-                attacking.HitPoints -= damage;
-                Console.WriteLine($"{attacking.Name}, you're a very graceful creature. You hit yourself! {attacking.Name} took {damage} damage.");
-            }
-            else if (nbr1and20 == 20)//damage for crit hit
-            {
-                defending.HitPoints -= (damage * 2);
-                Console.WriteLine($"{attacking.Name} hit {defending.Name} for double damage! {defending.Name} took {damage} damage.");
-            }
-            else if ((nbr1and20 + attacking.Attack) >= (nbr1and20 + defending.ArmorClass))
-            {//TODONE Utilize num1and20 for damage on crits and botches
-                defending.HitPoints -= damage;
-                Console.WriteLine($"{attacking.Name} hit {defending.Name}! {defending.Name} took {damage} damage.");
-            }
-            else
-            {
-                Console.WriteLine($"{attacking.Name} missed.");
-            }
-
         }//end Attack
 
         //BATTLE
         public static void Battle(PlayerCharacter player, Croanie croanie)
         {
+
             if (player.Initiative >= croanie.Initiative)
             {
                 Attack(player, croanie);
                 if (croanie.HitPoints > 0)
                 {
                     Attack(croanie, player);
-                }              
+                }
             }
             else
             {
