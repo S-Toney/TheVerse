@@ -24,7 +24,7 @@ namespace TheVerse
             Console.Title = "The 'Verse";
             Console.WriteLine("Press escape to exit.\n\n\n" +
                 "You're peacefully floating through the 'verse when...\n\n");
-            //string playerCharacter = "";
+            //TODO Keep score
             do
             {
                 //Choose Character Loop
@@ -104,17 +104,17 @@ namespace TheVerse
                     do
                     {
                         //TODO Seperate loop based on land vs space scenario
-                        Console.Clear();
+                        Console.Clear();//TODO Fix the clearing issue so you can read the output - Add a "Press Ent to continue"
 
-                        //TODO Load character situation based on chooseCharacter??? Maybe too restrictive?
                         Console.WriteLine(GetScenario());
-                        Console.WriteLine($"\tWhat do you do, *Player*Name*?\n" +//TODO Display chosen character name in place of Player name.
+                        Console.WriteLine($"\tWhat do you do, {player.Name}?\n" +//TODONE Display chosen character name in place of Player name.
                                                                                  // $"\t\t R)elease the Cry Baby\n" +
                             $"\t\t I)t's time to fight!\n" +
                             $"\t\t G)o for burn\n");
                         ConsoleKey playerChoice = Console.ReadKey(true).Key;
                         switch (playerChoice)
                         {
+                            case ConsoleKey.X:
                             case ConsoleKey.E:
                             case ConsoleKey.Escape:
                                 Console.WriteLine("As I understand it, it's a bit cold outside. Better put on a suit.");
@@ -128,9 +128,11 @@ namespace TheVerse
                             //Console.WriteLine("Cry Baby Cry - Make your mother sigh");
                             //break;
                             case ConsoleKey.I:
-                                //TODO Combat Functionality
+                                //TODONE Combat Functionality
                                 Combat.Battle(player, croanie);
                                 Combat.Battle(player, boss);
+                                Console.WriteLine("Press enter to continue...");
+                                Console.ReadLine();
                                 break;
                             case ConsoleKey.G:
                                 //TODO Run away Functionality
@@ -148,7 +150,7 @@ namespace TheVerse
 
         //Game Enemies
         private static void GetCroanie(int indexNbr)
-        {   //TODO I need these to connect to the class names not just spit out strings
+        {   
             List<Croanie> ListCroanie = new List<Croanie>()
             {
                 new Croanie("He's called Two-Fry. ALways makes it quick and clean.", 7, "Too-Fry", 3, 1, 1, 1, 4, 7)
@@ -158,7 +160,7 @@ namespace TheVerse
         }//end Croanies
 
         private static void GetEnemy(int indexNbr)
-        {   //TODO I need these to connect to the class names not just spit out strings
+        {   
             List<Boss> ListBoss = new List<Boss>()
             {
                 new Boss("She's just about mayor of this little moon", 5, "Patience", 3, 2, 1, 2, 1, 5)
@@ -170,7 +172,7 @@ namespace TheVerse
         private static string GetScenario()
         {
             List<string> scenario = new List<string>()
-            {   //TODO How to add in enemy = name??????? and name should go where \"friend\" is
+            { 
                 "You're landing on Whitefall. It's time to visit an old \"friend\". Let's try to make a deal with Patience...\n\nThe last time you were on Whitefall there was a conflict between you tow but now you're desperate to sell your cargo. You land early and bury the cargo to ensure you get paid before you meet up with Patience and her loyal sidekick Two-Fry. At the rendezvous Patience gives you the money for your cargo and wants to know where it is. Patience smiles broadly as she confirms she knows the location of the buried cargo. Two-Fry who raises his rifle and you realize Patience has no reason to let you live if you tell her where the cargo is. When she looks at Two-Fry you know she's going to tell him to kill you."
             };
 

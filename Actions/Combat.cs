@@ -35,7 +35,7 @@ namespace Actions
             }
             else
             {
-                Console.WriteLine($"\nA {attacking.Name} rolled:\n{nbr1and20}\n");
+                Console.WriteLine($"\n{attacking.Name} rolled:\n{nbr1and20}\n");
             }
             if ((nbr1and20 + attacking.Attack) >= (nbr1and20 + defending.ArmorClass))
             {//TODO Utilize num1and20 for damage on crits and botches
@@ -60,6 +60,10 @@ namespace Actions
                 {
                     Attack(croanie, player);
                 }
+                else
+                {
+                    Console.WriteLine($"You killed {croanie}");
+                }
             }
             else
             {
@@ -67,6 +71,10 @@ namespace Actions
                 if (player.HitPoints > 0)
                 {
                     Attack(player, croanie);
+                }
+                else
+                {
+                    Console.WriteLine($"Looks like you were right about his being a bad idea. You're dead...");
                 }
             }
         }
