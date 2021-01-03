@@ -27,14 +27,14 @@ namespace Actions
 
             if (nbr1and20 == 1)
             {
-                Console.WriteLine($"OH DEAR GOD...{attacking.Name} botched...\n");
                 attacking.HitPoints -= damage;
+                Console.WriteLine($"OH DEAR GOD...{attacking.Name} botched...\n");
                 Console.WriteLine($"You're a very graceful creature, {attacking.Name}. You hit yourself! \n\t{attacking.Name} took {damage} damage.");
             }
             else if (nbr1and20 == 20)
             {
-                Console.WriteLine($"WOOOOOOHOOOOOOOOOOO {nbr1and20}! That's a critical hit!");
                 defending.HitPoints -= (damage * 2);
+                Console.WriteLine($"WOOOOOOHOOOOOOOOOOO {nbr1and20}! That's a critical hit!");
                 Console.WriteLine($"{attacking.Name} hit {defending.Name} for double damage! \n\t{defending.Name} took {damage} damage.");
             }
             else

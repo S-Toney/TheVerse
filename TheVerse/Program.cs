@@ -162,6 +162,8 @@ namespace TheVerse
                                     Console.WriteLine("\n\n\tYou're able to keep flying...\n");
                                     again = false;
                                 }
+                                Console.WriteLine($"\n\n\t{player.Name} Hit Points: {player.HitPoints}\t{croanie.Name} Hit Points: {croanie.HitPoints}\t{boss.Name} Hit Points: {boss.HitPoints}");
+                                Console.WriteLine($"\n\n\tScore: {score}");
                                 Console.WriteLine("\n\n\t\t\t\t\tPress enter to continue...");
                                 Console.ReadLine();
                                 break;
