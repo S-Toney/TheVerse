@@ -26,9 +26,18 @@ namespace Characters
         public bool IsFighter { get; set; }
 
         //ctors
-        public Fighter(string description, int maxHitPoints, bool isFighter, int hitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative) : base(description, maxHitPoints, hitPoints, name, attack, armorClass, dodge, block, initiative)
+        public Fighter(string description, int maxHitPoints, bool isFighter, int hitPoints, string name, int attack, int armorClass, int dodge, int block, int initiative)/* : base(description, maxHitPoints, hitPoints, name, attack, armorClass, dodge, block, initiative)*/
         {
+            Description = description;
+            MaxHitPoints = maxHitPoints;
             IsFighter = isFighter;
+            HitPoints = hitPoints;
+            Name = name;
+            Attack = attack;
+            ArmorClass = armorClass;
+            Dodge = dodge;
+            Block = block;
+            Initiative = initiative;
         }
 
         //methods
