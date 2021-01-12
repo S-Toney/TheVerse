@@ -55,6 +55,14 @@ namespace Actions
         //BATTLE
         public static void Battle(PlayerCharacter player, Croanie croanie)
         {
+            if (player.HitPoints <= 0)
+            {
+                Console.WriteLine($"Looks like you were right about his being a bad idea. {croanie.Name} killed you...");
+            }
+            else if (croanie.HitPoints <= 0)
+            {
+                Console.WriteLine($"You killed {croanie.Name}!");
+            }
 
             if (player.Initiative >= croanie.Initiative)
             {
@@ -79,6 +87,16 @@ namespace Actions
         }
         public static void Battle(PlayerCharacter player, Boss boss)
         {
+            if (player.HitPoints <= 0)
+            {
+                Console.WriteLine($"Looks like you were right about his being a bad idea. {boss.Name} killed you...");
+            }
+            else if (boss.HitPoints <= 0)
+            {
+                Console.WriteLine($"You killed {boss.Name}!");
+            }
+
+
             if (player.Initiative >= boss.Initiative)
             {
                 Attack(player, boss);

@@ -27,7 +27,7 @@ namespace TheVerse
             Console.Title = "The 'Verse";
             Console.WriteLine("Press escape to exit.\n\n\n\n" +
                 "You're peacefully floating through the 'verse when...\n\n");
-            Thread.Sleep(2500);
+            Thread.Sleep(2000);
             //TODONE Keep score
             do
             {
